@@ -1,5 +1,6 @@
 # notes
 http://dillinger.io/ - tool for editing
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 ## Some question about js
 
 ### 1. How to write a function to object ptototype?
