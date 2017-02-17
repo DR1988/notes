@@ -1,10 +1,5 @@
-# notes
 http://dillinger.io/ - tool for editing
-## some question about js
 
-### How to write a function to object ptototype 
-# notes
-http://dillinger.io/ - tool for editing
 ## Some question about js
 
 ### 1. How to write a function to object ptototype?
