@@ -1,5 +1,5 @@
+# notes
 http://dillinger.io/ - tool for editing
-
 ## Some question about js
 
 ### 1. How to write a function to object ptototype?
@@ -7,7 +7,7 @@ http://dillinger.io/ - tool for editing
  make a doubler of arrays elements
  Exmpl: [1,2,3] => dosmth => [2,4,6]
  ```
- ### Answer
+ #### Answer
  ```javascript
  let arr = [1,2,3]
  Array.prototype.doubler = function() {
