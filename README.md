@@ -65,7 +65,8 @@ bar жестко связан с obj1, но new bar(3) не меняет obj1.a 
 
 как перекрыть new?
 
-использвоать полифилл - if (!Function.prototype.bind) {
+использвоать полифилл:
+if (!Function.prototype.bind) {
 	Function.prototype.bind = function(oThis) {
 		if (typeof this !== "function") {
 			// наиболее подходящая вещь в ECMAScript 5
