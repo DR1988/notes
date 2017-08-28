@@ -66,6 +66,7 @@ bar жестко связан с obj1, но new bar(3) не меняет obj1.a 
 как перекрыть new?
 
 использвоать полифилл:
+```javascript
 if (!Function.prototype.bind) {
 	Function.prototype.bind = function(oThis) {
 		if (typeof this !== "function") {
@@ -75,7 +76,6 @@ if (!Function.prototype.bind) {
 				"is trying to be bound is not callable"
 			);
 		}
-
 		var aArgs = Array.prototype.slice.call( arguments, 1 ),
 			fToBind = this,
 			fNOP = function(){},
@@ -89,10 +89,10 @@ if (!Function.prototype.bind) {
 				);
 			}
 		;
-
 		fNOP.prototype = this.prototype;
 		fBound.prototype = new fNOP();
 
 		return fBound;
 	};
 }
+ ```
