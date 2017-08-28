@@ -46,3 +46,52 @@ f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
 
 ### 4. difference between throttle and debounce in lodash
  https://css-tricks.com/debouncing-throttling-explained-examples/
+
+### 5. bind and new
+ ```javascript
+ function foo(something) {
+  this.a = something;
+ }
+ var obj1 = {};
+ var bar = foo.bind( obj1 );
+ bar( 2 );
+ console.log( obj1.a ); // what's gonna be here?
+ var baz = new bar( 3 );
+ console.log( obj1.a ); // and here?
+ console.log( baz.a ); // here? why?
+ ```
+ 
+bar жестко связан с obj1, но new bar(3) не меняет obj1.a на значение 3 что было бы ожидаемо нами. Вместо этого жестко связанный (с obj1) вызов bar(..) может быть перекрыт с new. Поскольку был применен new, обратно мы получили новый созданный объект, который мы назвали baz, и в результате видно, что в baz.a значение 3.
+
+как перекрыть new?
+
+использвоать полифилл - if (!Function.prototype.bind) {
+	Function.prototype.bind = function(oThis) {
+		if (typeof this !== "function") {
+			// наиболее подходящая вещь в ECMAScript 5
+			// внутренняя функция IsCallable
+			throw new TypeError( "Function.prototype.bind - what " +
+				"is trying to be bound is not callable"
+			);
+		}
+
+		var aArgs = Array.prototype.slice.call( arguments, 1 ),
+			fToBind = this,
+			fNOP = function(){},
+			fBound = function(){
+				return fToBind.apply(
+					(
+						this instanceof fNOP &&
+						oThis ? this : oThis
+					),
+					aArgs.concat( Array.prototype.slice.call( arguments ) )
+				);
+			}
+		;
+
+		fNOP.prototype = this.prototype;
+		fBound.prototype = new fNOP();
+
+		return fBound;
+	};
+}
